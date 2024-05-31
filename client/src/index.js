@@ -1,5 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import GlobalStyles from './styles';
 import Pages from './pages';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
@@ -9,13 +9,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const root = createRoot(document.getElementById('root'));
-
-root.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <GlobalStyles />
-      <Pages />
-    </ApolloProvider>
-  </React.StrictMode>
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <GlobalStyles />
+    <Pages />
+  </ApolloProvider>,
+  document.getElementById('root')
 );
